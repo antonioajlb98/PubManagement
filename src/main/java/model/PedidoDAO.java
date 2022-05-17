@@ -11,4 +11,6 @@ public class PedidoDAO {
 		}
 		return _instance;
 	}
+	
+	
 }

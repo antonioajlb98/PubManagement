@@ -23,7 +23,7 @@ public class ComidaDAO {
 	
 	public static Collection<Comida> getAll() {
 		Collection<Comida> listaComida = new ArrayList<Comida>();
-		String sql = "select id,nombre,tipo,precio from producto where tipo=Bebida";
+		String sql = "select id,nombre,tipo,precio from producto where tipo='Comida'";
 		Connection miCon = Connect.getConnect();
 		try {
 			Statement st = miCon.createStatement();

@@ -11,10 +11,9 @@ import java.util.Collection;
 import utils.Connect;
 
 public class ProductoDAO {
-	
+
 	private static ProductoDAO _instance;
-	private ProductoDAO() {
-	}
+
 	public static ProductoDAO getInstance() {
 		if (_instance == null) {
 			_instance = new ProductoDAO();
@@ -22,10 +21,15 @@ public class ProductoDAO {
 		return _instance;
 	}
 
-	public static Collection<Producto> getAll() {
+	private Connection miCon;
+
+	private ProductoDAO() {
+		miCon=Connect.getConnect();
+	}
+
+	public Collection<Producto> getAll() {
 		Collection<Producto> listaProductos = new ArrayList<Producto>();
 		String sql = "select id,nombre,tipo,precio from producto";
-		Connection miCon = Connect.getConnect();
 		try {
 			Statement st = miCon.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -46,7 +50,6 @@ public class ProductoDAO {
 	public boolean insert(Producto p) {
 		boolean insertado = false;
 		String sql = "Insert into Producto values (null,?,?,?)";
-		Connection miCon = Connect.getConnect();
 		try {
 			PreparedStatement ps = miCon.prepareStatement(sql);
 			ps.setString(1, p.getNombre());
@@ -65,16 +68,34 @@ public class ProductoDAO {
 	public boolean delete(Producto p) {
 		boolean eliminado = false;
 		String sql = "delete from Producto where id=?";
-		Connection miCon = Connect.getConnect();
 		try {
 			PreparedStatement ps = miCon.prepareStatement(sql);
-			ps.setInt(1,p.getId());
+			ps.setInt(1, p.getId());
 			ps.executeUpdate();
 			eliminado = true;
 		} catch (SQLException e) {
 			eliminado = false;
-			e.printStackTrace();			
+			e.printStackTrace();
 		}
 		return eliminado;
+	}
+
+	public boolean update(Producto p) {
+		boolean result = false;
+		String consulta = "UPDATE producto SET Nombre=?, Precio=?, Tipo=? WHERE id=?";
+		try {
+			PreparedStatement sentencia = miCon.prepareStatement(consulta);
+			sentencia.setFloat(2, p.getPrecio());
+			sentencia.setString(1, p.getNombre());
+			sentencia.setInt(4, p.getId());
+			sentencia.setString(3, p.getTipo());
+			sentencia.executeUpdate();
+			result = true;
+		} catch (SQLException e) {
+			result = false;
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }

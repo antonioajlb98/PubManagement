@@ -40,6 +40,15 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolver" text="Volver">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children></VBox>

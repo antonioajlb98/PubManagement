@@ -23,9 +23,8 @@ public class ClienteDAO {
 	private Connection miCon;
 
 	private ClienteDAO() {
-		this.miCon = Connect.getConnect();
+		miCon = Connect.getConnect();
 	}
-
 	public boolean login(String user, String contrasena) {
 		boolean logeado = false;
 		if (this.miCon != null) {
@@ -73,13 +72,29 @@ public class ClienteDAO {
 		return borrado;
 	}
 
-	public void update(Cliente c) {
+	public boolean update(Cliente c) {
+		boolean result = false;
+		String consulta="UPDATE cliente SET Nombre=?, Apellidos=?, contrasena=?, usuario=? WHERE id=?";
+		try {
+			PreparedStatement sentencia = miCon.prepareStatement(consulta);
+			sentencia.setString(2, c.getApellidos());
+			sentencia.setString(1, c.getNombre());
+			sentencia.setString(4, c.getUsuario());
+			sentencia.setString(3, c.getContrasena());
+			sentencia.setInt(5, c.getCodigo());
+			sentencia.executeUpdate();
+			result=true;
+		} catch (SQLException e) {
+			result=false;
+			e.printStackTrace();
+		}
 		
+		return result;
 	}
 	public Cliente getLogeado(String user) {
 		Cliente c = new Cliente();
 		if (this.miCon != null) {
-			String sql = "select id,nombre,apellidos,usuario from cliente where usuario= ?";
+			String sql = "select id,nombre,apellidos,usuario,contrasena from cliente where usuario= ?";
 			try {
 				PreparedStatement ps = miCon.prepareStatement(sql);
 				ps.setString(1, user);
@@ -89,6 +104,7 @@ public class ClienteDAO {
 					c.setApellidos(rs.getString(3));
 					c.setCodigo(rs.getInt(1));
 					c.setUsuario(rs.getString(4));
+					c.setContrasena(rs.getString(5));
 				}else {
 				}
 			} catch (SQLException e) {

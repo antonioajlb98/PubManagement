@@ -28,6 +28,8 @@ public class SignUpController extends Controller{
 	
 	@FXML
 	private Button btnRegistro;
+	@FXML
+	private Button btnVolver;
 	
 	
 	@FXML
@@ -39,7 +41,7 @@ public class SignUpController extends Controller{
 				&& !txtPassword.getText().isEmpty() 
 				&& !txtNombre.getText().isEmpty() 
 				&& !txtApellidos.getText().isEmpty()) {
-				registrado=utils.Utils.mostrarConfirmacion("A punto de registrar Usuario","¿Esta seguro de Registrar este Usuario?");
+				registrado=u.mostrarConfirmacion("A punto de registrar Usuario","¿Esta seguro de Registrar este Usuario?");
 				String nombre=txtNombre.getText();
 				String apellidos=txtApellidos.getText();
 				String contrasena = DigestUtils.sha256Hex(txtPassword.getText());
@@ -47,12 +49,19 @@ public class SignUpController extends Controller{
 				Cliente c = new Cliente(nombre,apellidos,user,contrasena);
 				cDAO.insert(c);
 				if(registrado) {
-					utils.Utils.mostrarInfo("Usuario Registrado Con Exito","","Ya puede iniciar sesión");
+					u.mostrarInfo("Usuario Registrado Con Exito","","Ya puede iniciar sesión");
 					App.setRoot("login");
 				}
 			}else {
-				utils.Utils.mostrarAlerta("Error al Registrar","No se ha podido registrar usuario","Debe rellenar todos los campos");
+				u.mostrarAlerta("Error al Registrar","No se ha podido registrar usuario","Debe rellenar todos los campos");
 			}
+		}
+	}
+	@FXML
+	private void btnVolver(ActionEvent evento) throws IOException {
+		Object evt = evento.getSource();
+		if(evt.equals(btnVolver)) {
+			App.setRoot("login");
 		}
 	}
 }

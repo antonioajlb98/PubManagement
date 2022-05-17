@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,7 +16,7 @@
             <Font size="30.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="15.0" top="20.0" />
+            <Insets bottom="10.0" top="15.0" />
          </VBox.margin>
       </Label>
       <Label text="Nombre">
@@ -76,8 +77,20 @@
             <Font size="25.0" />
          </font>
          <VBox.margin>
-            <Insets top="15.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </Button>
+      <HBox alignment="TOP_RIGHT" prefHeight="16.0" prefWidth="474.0">
+         <children>
+            <Button fx:id="btnVolver" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnVolver" text="Volver">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>

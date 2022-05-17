@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="474.0" style="-fx-alignment: top-center; -fx-background-color: #FF8D33;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AntonioJesus.PubManagement.AnadirProductoController">
    <children>
-      <Label style="-fx-border-color: black; -fx-border-radius: 10px;" text="PubManagement" textAlignment="CENTER" textFill="WHITE">
+      <Label style="-fx-border-color: white; -fx-border-radius: 10px;" text="PubManagement" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
@@ -39,31 +40,31 @@
       </Label>
       <TextField fx:id="txtPrecio">
          <VBox.margin>
-            <Insets bottom="10.0" left="50.0" right="50.0" />
+            <Insets left="50.0" right="50.0" />
          </VBox.margin>
       </TextField>
-      <Label text="Categoria:">
+      <Label text="Tipo">
          <font>
             <Font size="20.0" />
          </font>
-         <VBox.margin>
-            <Insets bottom="10.0" />
-         </VBox.margin>
       </Label>
-      <HBox alignment="CENTER" prefHeight="33.0" prefWidth="410.0">
+      <HBox alignment="CENTER" prefHeight="41.0" prefWidth="474.0">
          <children>
-            <RadioButton fx:id="btnComida" mnemonicParsing="false" text="Comida">
+            <RadioButton fx:id="btnComida" mnemonicParsing="false" selected="true" text="Comida">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Tipo" />
+               </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="btnBebida" mnemonicParsing="false" text="Bebida">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
+            <RadioButton fx:id="btnBebida" mnemonicParsing="false" text="Bebida" toggleGroup="$Tipo">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
             </RadioButton>
          </children>
       </HBox>
@@ -75,5 +76,17 @@
             <Insets top="30.0" />
          </VBox.margin>
       </Button>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolver" text="Volver">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>

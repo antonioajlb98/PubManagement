@@ -40,13 +40,12 @@ public class LoginController extends Controller implements Initializable {
     			String password = DigestUtils.sha256Hex(txtPassword.getText());
     			if(cDAO.login(user, password)) {
     				Controller.usuariologeado=cDAO.getLogeado(user);
-    				System.out.println(Controller.usuariologeado);
     				App.setRoot("menuPrincipal");
     			}else {
-    				utils.Utils.mostrarAlerta("Error al iniciar sesion","No se ha podido iniciar sesion","Los datos intrucidos no son correctos");
+    				u.mostrarAlerta("Error al iniciar sesion","No se ha podido iniciar sesion","Los datos intrucidos no son correctos");
     			}
     		}else {
-    			utils.Utils.mostrarAlerta("Error al iniciar sesion","No se ha podido iniciar sesion","Debe rellenar todos los campos");
+    			u.mostrarAlerta("Error al iniciar sesion","No se ha podido iniciar sesion","Debe rellenar todos los campos");
     		}
     	}
     }

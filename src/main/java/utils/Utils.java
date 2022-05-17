@@ -11,24 +11,28 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 public class Utils {
+	
+	public Utils() {
+	}
+	
 	private static Scene scene;
 	private static Stage stage;
 	
-	public static void mostrarAlerta(String title, String header, String description) {
+	public void mostrarAlerta(String title, String header, String description) {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle(title);
 		alert.setHeaderText(header);
 		alert.setContentText(description);
 		alert.showAndWait();
 	}
-	public static void mostrarInfo(String title, String header, String description) {
+	public void mostrarInfo(String title, String header, String description) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(description);
         alert.show();
     }
-	public static boolean mostrarConfirmacion() {
+	public boolean mostrarConfirmacion() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar");
         alert.setHeaderText("A punto de eliminar");
@@ -41,14 +45,14 @@ public class Utils {
             return false;
         }
     }
-	public static void changeScene(String fxml) throws IOException {
+	public void changeScene(String fxml) throws IOException {
 		stage = new Stage();
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
 		scene = new Scene (fxmlLoader.load());
 		stage.setScene(scene);
 		stage.show();
 	}
-	public static boolean mostrarConfirmacion(String header,String description) {
+	public boolean mostrarConfirmacion(String header,String description) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar");
         alert.setHeaderText(header);
@@ -61,4 +65,28 @@ public class Utils {
             return false;
         }
 	}
+	public void parseFloat(String convert) {
+		try {
+			Float num = Float.parseFloat(convert);
+		}catch(NumberFormatException e) {
+			mostrarAlerta("Error", "Error en el formulario",
+					"Debe introducir un numero decimal en el precio");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

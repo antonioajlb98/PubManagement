@@ -24,7 +24,7 @@ public class BebidaDAO {
 	
 	public static Collection<Bebida> getAll() {
 		Collection<Bebida> listaBebidas = new ArrayList<Bebida>();
-		String sql = "select id,nombre,tipo,precio from producto where tipo=Bebida";
+		String sql = "select id,nombre,tipo,precio from producto where tipo='Bebida'";
 		Connection miCon = Connect.getConnect();
 		try {
 			Statement st = miCon.createStatement();
