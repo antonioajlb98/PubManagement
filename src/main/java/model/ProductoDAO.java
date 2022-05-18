@@ -137,7 +137,7 @@ public class ProductoDAO {
 		return result;
 	}
 	
-	public Collection<Producto> getAllBebidas() {
+	public Collection<Producto> getAllBebida() {
 		Collection<Producto> listaProductos = new ArrayList<Producto>();
 		String sql = "select id,nombre,tipo,precio from producto where Tipo='Bebida'";
 		try {

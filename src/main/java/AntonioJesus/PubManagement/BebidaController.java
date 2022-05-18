@@ -47,14 +47,14 @@ public class BebidaController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		int cont = 0;
 		u.estilo(btnVolver);
-		ArrayList<Producto> listaComida = (ArrayList<Producto>) pDAO.getAllComida();
+		ArrayList<Producto> listaBebida = (ArrayList<Producto>) pDAO.getAllBebida();
 		panelBebida.setAlignment(Pos.CENTER);
 
 		for (int i = 0; i < panelBebida.getRowCount(); i++) {
 			for (int j = 0; j < panelBebida.getColumnCount(); j++) {
-				if (cont<listaComida.size()) {
+				if (cont<listaBebida.size()) {
 					Button btn = new Button();
-					btn.setText(listaComida.get(cont).getNombre());
+					btn.setText(listaBebida.get(cont).getNombre());
 					btn.setWrapText(true);
 					btn.setTextAlignment(TextAlignment.CENTER);
 					btn.setPrefWidth(620);
