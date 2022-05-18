@@ -31,10 +31,11 @@ public class Connect {
 		}
 	}
 
-	public static Connection getConnect() {
+	public static Connection getConnect(){
 		if (_newInstance == null) {
 			_newInstance = new Connect();
 		}
+		
 		return con;
 	}
 

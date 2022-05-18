@@ -1,17 +1,20 @@
 package AntonioJesus.PubManagement;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import model.Producto;
 
-public class AnadirProductoController extends Controller {
+public class AnadirProductoController extends Controller implements Initializable{
 
 	@FXML
 	private TextField txtNombre;
@@ -30,7 +33,13 @@ public class AnadirProductoController extends Controller {
 
 	@FXML
 	private Button btnVolver;
-
+	
+	
+	/**
+	 * 
+	 * @param evento 
+	 * @throws IOException
+	 */
 	@FXML
 	private void addProduct(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
@@ -47,7 +56,12 @@ public class AnadirProductoController extends Controller {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param evento
+	 * @throws IOException
+	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
@@ -56,12 +70,17 @@ public class AnadirProductoController extends Controller {
 		}
 
 	}
-
-	private void addItem(String text) {
+	
+	
+	/**
+	 * Metodo que añade un producto a la base de datos
+	 * @param text El tipo de Producto que es 
+	 */
+	private void addItem(String tipo) {
 		try {
 			Float precio = Float.parseFloat(txtPrecio.getText());
 			String nombre = txtNombre.getText();
-			Producto p = new Producto(nombre, text, precio);
+			Producto p = new Producto(nombre, tipo, precio);
 			if (pDAO.insert(p)) {
 				u.mostrarInfo("Producto añadido", "Todo Correcto", "Ya está el producto disponible");
 			} else {
@@ -72,5 +91,12 @@ public class AnadirProductoController extends Controller {
 					"Debe introducir un numero decimal en el precio");
 
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		u.estilo(btnAnadir);
+		u.estilo(btnVolver);
+		
 	}
 }

@@ -67,6 +67,8 @@ public class EditarPerfilController extends Controller implements Initializable{
 		txtNombre.setText(Controller.usuariologeado.getNombre());
 		txtApellidos.setText(Controller.usuariologeado.getApellidos());
 		txtUsuario.setText(Controller.usuariologeado.getUsuario()); 
+		u.estilo(btnActualizar);
+		u.estilo(btnVolver);
 	}
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {

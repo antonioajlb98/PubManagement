@@ -61,8 +61,8 @@ public class LoginController extends Controller implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		u.estilo(btnLogin);
+		u.estilo(btnRegister);
 	}
     
 }

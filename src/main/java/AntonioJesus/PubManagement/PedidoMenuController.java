@@ -2,14 +2,17 @@ package AntonioJesus.PubManagement;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class PedidoMenuController extends Controller{
+public class PedidoMenuController extends Controller implements Initializable{
 	
 	@FXML
 	private ImageView imgComida;
@@ -39,6 +42,11 @@ public class PedidoMenuController extends Controller{
 		if(evt.equals(btnVolver)) {
 			App.setRoot("menuPrincipal");
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		u.estilo(btnVolver);
 	}
 	
 	

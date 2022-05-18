@@ -79,6 +79,9 @@ public class EditarProductosController extends Controller implements Initializab
 
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
+		u.estilo(btnAnadir);
+		u.estilo(btnEliminar);
+		u.estilo(btnVolver);
 		tab.setItems(listaActualizable);
 		Nombre.setCellValueFactory(cellData -> {
 			return new SimpleObjectProperty<>(cellData.getValue().getNombre());

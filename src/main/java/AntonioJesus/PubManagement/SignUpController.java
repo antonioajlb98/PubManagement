@@ -1,17 +1,20 @@
 package AntonioJesus.PubManagement;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Cliente;
 
-public class SignUpController extends Controller{
+public class SignUpController extends Controller implements Initializable{
 	
 	
 	@FXML
@@ -64,4 +67,9 @@ public class SignUpController extends Controller{
 			App.setRoot("login");
 		}
 	}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+			u.estilo(btnRegistro);
+			u.estilo(btnVolver);
+		}
 }

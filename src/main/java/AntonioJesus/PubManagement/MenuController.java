@@ -47,5 +47,8 @@ public class MenuController extends Controller implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		u.estilo(btnEditarPerfil);
+		u.estilo(btnEditarProductos);
+		u.estilo(btnNuevoPedido);
 	}
 }
