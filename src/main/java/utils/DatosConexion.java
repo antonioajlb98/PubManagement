@@ -48,6 +48,14 @@ public class DatosConexion implements Serializable{
 		return "DatosConexion [server=" + server + ", database=" + database + ", user=" + user + ", password="
 				+ password + "]";
 	}
+	public DatosConexion(String server, String database, String user, String password) {
+		super();
+		this.server = server;
+		this.database = database;
+		this.user = user;
+		this.password = password;
+	}
+	
 	
 	
 	

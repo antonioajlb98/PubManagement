@@ -9,5 +9,6 @@ module AntonioJesus.PubManagement {
 	requires javafx.graphics;
 
     opens AntonioJesus.PubManagement to javafx.fxml;
+    opens utils to java.xml.bind;
     exports AntonioJesus.PubManagement;
 }

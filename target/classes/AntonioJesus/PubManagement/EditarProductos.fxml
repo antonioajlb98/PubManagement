@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="503.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AntonioJesus.PubManagement.EditarProductosController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="503.0" prefWidth="657.0" style="-fx-background-color: #FF8D33;">
+         <children>
+            <Label style="-fx-border-color: white; -fx-border-radius: 15px;" text="PubManagement" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/bar.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="254.0" prefWidth="296.0" style="-fx-background-color: #FF8D33;">
+               <children>
+                  <Button fx:id="btnAnadir" alignment="CENTER" maxWidth="200.0" mnemonicParsing="false" onAction="#btnAnadir" text="Añadir">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnEliminar" layoutX="132.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnEliminar" prefWidth="200.0" text="Eliminar">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolver" text="Volver">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></VBox>
+      <TableView fx:id="tab" prefHeight="503.0" prefWidth="922.0">
+        <columns>
+            <TableColumn fx:id="id" prefWidth="59.20001220703125" text="ID" />
+          <TableColumn fx:id="Nombre" prefWidth="286.3999710083008" text="Nombre" />
+            <TableColumn fx:id="Tipo" prefWidth="92.79998779296875" text="Tipo" />
+          <TableColumn fx:id="Precio" prefWidth="123.19992065429688" text="Precio" />
+        </columns>
+      </TableView>
+   </children>
+</HBox>

@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,9 +21,9 @@ public class Connect {
 	private static Connect _newInstance;
 
 	private Connect() {
-		//DatosConexion dc = loadFile();
+		DatosConexion dc = loadFile();
 		try {
-			con=DriverManager.getConnection("jdbc:mysql://localhost/"+"pubmanagement","root","");
+			con=DriverManager.getConnection(dc.getServer()+"/"+dc.getDatabase(),dc.getUser(),dc.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			con=null;
@@ -48,7 +47,7 @@ public class Connect {
 			DatosConexion newR = (DatosConexion) um.unmarshal(new File(file));
 			dc=newR;
 			
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return dc;
