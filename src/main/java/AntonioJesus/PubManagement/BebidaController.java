@@ -11,8 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
-import model.Bebida;
-import model.BebidaDAO;
+import model.Producto;
+import utils.Loggers;
 
 public class BebidaController extends Controller implements Initializable{
 	
@@ -22,7 +22,11 @@ public class BebidaController extends Controller implements Initializable{
 	private GridPane panelBebida;
 	@FXML
 	private Button btnVolver;
-	
+	/**
+	 * Funcion que te lleva a la ventana anterior.
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que lanza al cambiar de pantalla
+	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
@@ -30,10 +34,16 @@ public class BebidaController extends Controller implements Initializable{
 			App.setRoot("PedidoMenu");
 		}
 	}
+	
+	/**
+	 * Funcion que se inicia al cambiar a esta pantalla
+	 * que crea los botones y los añade al gridpanel dependiendo
+	 * los productos que haya en el Array.
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		int cont = 0;
-		ArrayList<Bebida> listaBebida = (ArrayList<Bebida>) BebidaDAO.getAll();
+		ArrayList<Producto> listaBebida = (ArrayList<Producto>) pDAO.getAll();
 
 		for (int i = 0; i < panelBebida.getRowCount(); i++) {
 			for (int j = 0; j < panelBebida.getColumnCount(); j++) {
@@ -46,6 +56,7 @@ public class BebidaController extends Controller implements Initializable{
 					btn.setPrefHeight(503);
 					u.estilo(btn);
 					panelBebida.add(btn, j, i);
+					Loggers.LogsInfo("Boton añadido al panel");
 					cont++;
 				}
 			}

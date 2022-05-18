@@ -68,7 +68,11 @@ public class EditarProductosController extends Controller implements Initializab
 			}
 		}
 	}
-
+	/**
+	 * Funcion que te lleva a la ventana anterior.
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que lanza al cambiar de pantalla
+	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
@@ -76,7 +80,11 @@ public class EditarProductosController extends Controller implements Initializab
 			App.setRoot("menuPrincipal");
 		}
 	}
-
+	/**
+	 * Funcion que setea los Productos en la table view
+	 * y te permite cambiar los datos y actualizarlos en la BBDD
+	 * en la misma tabla al pulsar 2 veces.
+	 */
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
 		u.estilo(btnAnadir);
@@ -135,6 +143,11 @@ public class EditarProductosController extends Controller implements Initializab
 		tab.setEditable(true);
 		tab.getSelectionModel().cellSelectionEnabledProperty().set(true);
 	}
+	/**
+	 * Funcion que comprueba que añadas correctamente el tipo al Producto
+	 * @param tipo El tipo de producto  
+	 * @return Devuelve true si ha introducido correctamente el tipo o false si no. 
+	 */
 	public boolean checkTipo(String tipo) {
 		boolean correct=false;
 		if(!tipo.equals("Bebida") || !tipo.equals("Comida")) {

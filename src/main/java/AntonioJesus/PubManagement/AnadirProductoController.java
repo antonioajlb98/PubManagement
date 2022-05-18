@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.ButtonGroup;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import model.Producto;
+import utils.Loggers;
 
 public class AnadirProductoController extends Controller implements Initializable{
 
@@ -36,9 +35,10 @@ public class AnadirProductoController extends Controller implements Initializabl
 	
 	
 	/**
-	 * 
-	 * @param evento 
-	 * @throws IOException
+	 * Funcion que te lleva a una ventana para añadir un
+	 * producto controlando los errores. 
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que puede lanzar al cambiar de pantalla.
 	 */
 	@FXML
 	private void addProduct(ActionEvent evento) throws IOException {
@@ -47,20 +47,23 @@ public class AnadirProductoController extends Controller implements Initializabl
 			if (!txtNombre.getText().isEmpty() && !txtPrecio.getText().isEmpty()) {
 				if (btnBebida.isSelected()) {
 					addItem(btnBebida.getText());
+					Loggers.LogsInfo("Bebida añadida");
 				} else {
 					addItem(btnComida.getText());
+					Loggers.LogsInfo("Comida añadida");
 				}
 			} else {
 				u.mostrarAlerta("Error al Añadir", "No se ha podido añadir Producto",
 						"Debe rellenar todos los campos.");
+				Loggers.LogsSevere("Error al añadir");
 			}
 		}
 	}
 	
 	/**
-	 * 
-	 * @param evento
-	 * @throws IOException
+	 * Funcion que te lleva a la ventana anterior.
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que lanza al cambiar de pantalla
 	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {

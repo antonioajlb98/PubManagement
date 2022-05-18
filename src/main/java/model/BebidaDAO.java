@@ -21,16 +21,20 @@ public class BebidaDAO {
 		return _instance;
 	}
 	
-	
-	public static Collection<Bebida> getAll() {
-		Collection<Bebida> listaBebidas = new ArrayList<Bebida>();
+	/**
+	 * Funcion que Coge todos los elementos de la base de datos 
+	 * y los mete en un ArrayList
+	 * @return Devuelve el ArrayList con los Datos.
+	 */
+	public static Collection<Producto> getAll() {
+		Collection<Producto> listaBebidas = new ArrayList<Producto>();
 		String sql = "select id,nombre,tipo,precio from producto where tipo='Bebida'";
 		Connection miCon = Connect.getConnect();
 		try {
 			Statement st = miCon.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
-				Bebida b = new Bebida();
+				Producto b = new Producto();
 				listaBebidas.add(b);
 				b.setId(rs.getInt(1));
 				b.setNombre(rs.getString(2));

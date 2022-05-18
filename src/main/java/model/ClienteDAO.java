@@ -25,6 +25,15 @@ public class ClienteDAO {
 	private ClienteDAO() {
 		miCon = Connect.getConnect();
 	}
+	
+	/**
+	 * Funcion que comprueba si los datos introducidos en el login
+	 * son correctos o no 
+	 * @param user Usuario introducido en la ventana de login 	
+	 * @param contrasena Contraseña introducida en la ventana de Login 
+	 * @return Devuelve true si el usuario se encuentra en la base de datos
+	 * o false si no.
+	 */
 	public boolean login(String user, String contrasena) {
 		boolean logeado = false;
 		if (this.miCon != null) {
@@ -46,7 +55,14 @@ public class ClienteDAO {
 		}
 		return logeado;
 	}
-
+	
+	
+	/**
+	 * Funcion que inserta un cliente en la BBDD
+	 * @param c Cliente que queremos insertar
+	 * @return devuelce true si se ha introducido correctamente o 
+	 * false si no
+	 */
 	public boolean insert(Cliente c) {
 		boolean insertado = false;
 		String sql = "Insert into cliente values (null,?,?,?,?)";
@@ -65,7 +81,11 @@ public class ClienteDAO {
 		return insertado;
 
 	}
-
+	/**
+	 * Funcion para borrar un cliente de la base de datos
+	 * @param c Cliente que queremos borrar
+	 * @return Devuelve true si lo ha borrado correctamente o false si no.
+	 */
 	public boolean delete(Cliente c) {
 		boolean borrado = false;
 		
@@ -91,7 +111,12 @@ public class ClienteDAO {
 		
 		return result;
 	}
-	public Cliente getLogeado(String user) {
+	/**
+	 * Funcion que coge un Cliente de la base de datos a traves de su usuario.
+	 * @param user String pasado como parametro que sirve para identificar al cliente.
+	 * @return devuelve el cliente si se encuentra en la base de datos.
+	 */
+	public Cliente getUser(String user) {
 		Cliente c = new Cliente();
 		if (this.miCon != null) {
 			String sql = "select id,nombre,apellidos,usuario,contrasena from cliente where usuario= ?";

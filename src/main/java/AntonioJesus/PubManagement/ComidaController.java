@@ -12,8 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
-import model.Comida;
-import model.ComidaDAO;
+import model.Producto;
+import utils.Loggers;
 
 public class ComidaController extends Controller implements Initializable {
 
@@ -22,6 +22,11 @@ public class ComidaController extends Controller implements Initializable {
 	@FXML
 	private Button btnVolver;
 
+	/**
+	 * Funcion que te lleva a la ventana anterior.
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que lanza al cambiar de pantalla
+	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
@@ -29,13 +34,16 @@ public class ComidaController extends Controller implements Initializable {
 			App.setRoot("PedidoMenu");
 		}
 	}
-
+	/**
+	 * Funcion que se inicia al cambiar a esta pantalla
+	 * que crea los botones y los añade al gridpanel dependiendo
+	 * los productos que haya en el Array.
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		int cont = 0;
-		panelComida.maxHeightProperty();
-		panelComida.maxHeightProperty();
-		ArrayList<Comida> listaComida = (ArrayList<Comida>) ComidaDAO.getAll();
+		u.estilo(btnVolver);
+		ArrayList<Producto> listaComida = (ArrayList<Producto>) pDAO.getAllComida();
 		panelComida.setAlignment(Pos.CENTER);
 
 		for (int i = 0; i < panelComida.getRowCount(); i++) {
@@ -50,6 +58,7 @@ public class ComidaController extends Controller implements Initializable {
 					u.estilo(btn);
 					btn.maxWidthProperty();
 					panelComida.add(btn, j, i);
+					Loggers.LogsInfo("Boton añadido al panel");
 					cont++;
 				}
 			}

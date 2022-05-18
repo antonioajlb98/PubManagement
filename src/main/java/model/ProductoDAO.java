@@ -26,7 +26,7 @@ public class ProductoDAO {
 	private ProductoDAO() {
 		miCon=Connect.getConnect();
 	}
-
+	
 	public Collection<Producto> getAll() {
 		Collection<Producto> listaProductos = new ArrayList<Producto>();
 		String sql = "select id,nombre,tipo,precio from producto";
@@ -46,7 +46,12 @@ public class ProductoDAO {
 		}
 		return listaProductos;
 	}
-
+	/**
+	 * Funcion que inserta un Producto en la BBDD
+	 * @param p Producto que queremos insertar
+	 * @return devuelce true si se ha introducido correctamente o 
+	 * false si no
+	 */
 	public boolean insert(Producto p) {
 		boolean insertado = false;
 		String sql = "Insert into Producto values (null,?,?,?)";
@@ -64,7 +69,11 @@ public class ProductoDAO {
 		return insertado;
 
 	}
-
+	/**
+	 * Funcion para borrar un Producto de la base de datos
+	 * @param p Producto que queremos borrar
+	 * @return Devuelve true si lo ha borrado correctamente o false si no.
+	 */
 	public boolean delete(Producto p) {
 		boolean eliminado = false;
 		String sql = "delete from Producto where id=?";
@@ -79,7 +88,12 @@ public class ProductoDAO {
 		}
 		return eliminado;
 	}
-
+	/**
+	 * Funcion para modificar parametros de un producto y que se actualicen en la 
+	 * bsae de datos
+	 * @param p producto que queremos actualizar
+	 * @return devuelve true si se ha actualizado correctamente o false si no.
+	 */
 	public boolean update(Producto p) {
 		boolean result = false;
 		String consulta = "UPDATE producto SET Nombre=?, Precio=?, Tipo=? WHERE id=?";
@@ -97,5 +111,45 @@ public class ProductoDAO {
 		}
 
 		return result;
+	}
+	
+	public Collection<Producto> getAllBebidas() {
+		Collection<Producto> listaProductos = new ArrayList<Producto>();
+		String sql = "select id,nombre,tipo,precio from producto where Tipo='Bebida'";
+		try {
+			Statement st = miCon.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Producto p = new Producto();
+				listaProductos.add(p);
+				p.setId(rs.getInt(1));
+				p.setNombre(rs.getString(2));
+				p.setTipo(rs.getString(3));
+				p.setPrecio(rs.getFloat(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaProductos;
+	}
+	
+	public Collection<Producto> getAllComida() {
+		Collection<Producto> listaProductos = new ArrayList<Producto>();
+		String sql = "select id,nombre,tipo,precio from producto where Tipo='Comida'";
+		try {
+			Statement st = miCon.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Producto p = new Producto();
+				listaProductos.add(p);
+				p.setId(rs.getInt(1));
+				p.setNombre(rs.getString(2));
+				p.setTipo(rs.getString(3));
+				p.setPrecio(rs.getFloat(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaProductos;
 	}
 }

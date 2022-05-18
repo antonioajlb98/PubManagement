@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Cliente;
+import utils.Loggers;
 
 public class SignUpController extends Controller implements Initializable{
 	
@@ -34,7 +35,12 @@ public class SignUpController extends Controller implements Initializable{
 	@FXML
 	private Button btnVolver;
 	
-	
+	/**
+	 * Fuincion que Registra un usuario y lo inserta en la base de datos
+	 * controlando los errores de formulario
+	 * @param event accion que hay que realizar
+	 * @throws IOException excepcion que puede lanzar.
+	 */
 	@FXML
 	private void registrarUsuario(ActionEvent event) throws IOException {
 		Object evt = event.getSource();
@@ -53,6 +59,7 @@ public class SignUpController extends Controller implements Initializable{
 				cDAO.insert(c);
 				if(registrado) {
 					u.mostrarInfo("Usuario Registrado Con Exito","","Ya puede iniciar sesión");
+					Loggers.LogsInfo("Inicio de sesion exitoso");
 					App.setRoot("login");
 				}
 			}else {
@@ -60,11 +67,17 @@ public class SignUpController extends Controller implements Initializable{
 			}
 		}
 	}
+	/**
+	 * Funcion que te lleva a la ventana anterior.
+	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que lanza al cambiar de pantalla
+	 */
 	@FXML
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
 		if(evt.equals(btnVolver)) {
 			App.setRoot("login");
+			Loggers.LogsInfo("Cambio de fxml correcto");
 		}
 	}
 	@Override
