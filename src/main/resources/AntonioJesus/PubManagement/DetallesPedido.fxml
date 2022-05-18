@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="503.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AntonioJesus.PubManagement.ComidaController">
+<HBox prefHeight="503.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AntonioJesus.PubManagement.ComidaController">
    <children>
       <VBox alignment="CENTER" prefHeight="503.0" prefWidth="261.0" style="-fx-background-color: #FF8D33;">
          <children>
@@ -57,6 +57,11 @@
                </font>
             </Label>
             <TextArea fx:id="listaProductos" layoutX="64.0" layoutY="163.0" prefHeight="200.0" prefWidth="498.0" />
+            <Button layoutX="432.0" layoutY="445.0" mnemonicParsing="false" text="Imprimir Ticket" AnchorPane.rightAnchor="30.399999999999977">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

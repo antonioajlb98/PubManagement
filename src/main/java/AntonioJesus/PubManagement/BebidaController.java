@@ -26,7 +26,7 @@ public class BebidaController extends Controller implements Initializable{
 	private void btnVolver(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
 		if (evt.equals(btnVolver)) {
-			App.setRoot("menuPrincipal");
+			App.setRoot("PedidoMenu");
 		}
 	}
 	@Override
