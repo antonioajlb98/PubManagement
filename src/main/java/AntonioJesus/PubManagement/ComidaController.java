@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
@@ -16,7 +18,6 @@ import model.Producto;
 import utils.Loggers;
 
 public class ComidaController extends Controller implements Initializable {
-
 	@FXML
 	private GridPane panelComida;
 	@FXML
@@ -56,9 +57,17 @@ public class ComidaController extends Controller implements Initializable {
 					btn.setPrefWidth(620);
 					btn.setPrefHeight(503);
 					u.estilo(btn);
+					btn.setCursor(Cursor.HAND);
 					btn.maxWidthProperty();
+					btn.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent e) {
+							Controller.nuevoPedido.add(pDAO.getProduct(btn.getText()));
+							Loggers.LogsInfo(nuevoPedido.toString());
+						}
+					});
 					panelComida.add(btn, j, i);
 					Loggers.LogsInfo("Boton añadido al panel");
+					
 					cont++;
 				}
 			}

@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.JOptionPane;
+
 import utils.Connect;
 
 public class ProductoDAO {
@@ -27,6 +29,28 @@ public class ProductoDAO {
 		miCon=Connect.getConnect();
 	}
 	
+	public Producto getProduct(String name) {
+		Producto p = new Producto();
+		if (this.miCon != null) {
+			String sql = "select id,nombre,Tipo,Precio from Producto where nombre=?";
+			try {
+				PreparedStatement ps = miCon.prepareStatement(sql);
+				ps.setString(1, name);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					p.setNombre(rs.getString(2));
+					p.setTipo(rs.getString(3));
+					p.setId(rs.getInt(1));
+					p.setPrecio(rs.getFloat(4));
+				}else {
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null,"Hubo un error en la ejecucion:\n"+e.getMessage());
+			}
+		}
+		return p;
+	}
 	public Collection<Producto> getAll() {
 		Collection<Producto> listaProductos = new ArrayList<Producto>();
 		String sql = "select id,nombre,tipo,precio from producto";

@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
@@ -43,24 +46,35 @@ public class BebidaController extends Controller implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		int cont = 0;
-		ArrayList<Producto> listaBebida = (ArrayList<Producto>) pDAO.getAll();
+		u.estilo(btnVolver);
+		ArrayList<Producto> listaComida = (ArrayList<Producto>) pDAO.getAllComida();
+		panelBebida.setAlignment(Pos.CENTER);
 
 		for (int i = 0; i < panelBebida.getRowCount(); i++) {
 			for (int j = 0; j < panelBebida.getColumnCount(); j++) {
-				if (cont<listaBebida.size()) {
+				if (cont<listaComida.size()) {
 					Button btn = new Button();
-					btn.setText(listaBebida.get(cont).getNombre());
+					btn.setText(listaComida.get(cont).getNombre());
 					btn.setWrapText(true);
 					btn.setTextAlignment(TextAlignment.CENTER);
 					btn.setPrefWidth(620);
 					btn.setPrefHeight(503);
 					u.estilo(btn);
+					btn.maxWidthProperty();
+					btn.setCursor(Cursor.HAND);
+					btn.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent e) {
+							Controller.nuevoPedido.add(pDAO.getProduct(btn.getText()));
+						}
+					});
 					panelBebida.add(btn, j, i);
 					Loggers.LogsInfo("Boton añadido al panel");
+					
 					cont++;
 				}
 			}
 		}
+
 	}
 	
 }

@@ -21,6 +21,9 @@ public class MenuController extends Controller implements Initializable{
 
 	@FXML
 	private Button btnEditarProductos;
+	
+	@FXML
+	private Button btnDetallesPedido;
 
 	/**
 	 * Funcion para cambiar de pantalla
@@ -63,11 +66,18 @@ public class MenuController extends Controller implements Initializable{
 			Loggers.LogsInfo("Cambio de fxml correcto");
 		}
 	}
+	public void btnDetallesPedido(ActionEvent evento) throws IOException {
+		Object evt = evento.getSource();
+		if(evt.equals(btnDetallesPedido)) {
+			App.setRoot("DetallesPedido");
+		}
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		u.estilo(btnEditarPerfil);
 		u.estilo(btnEditarProductos);
 		u.estilo(btnNuevoPedido);
+		u.estilo(btnDetallesPedido);
 	}
 }
