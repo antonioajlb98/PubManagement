@@ -40,7 +40,7 @@ public class DetallerPedidoController extends Controller implements Initializabl
 		u.estilo(btnImprimir);
 		u.estilo(btnVolver);
 		codCliente.setText(Controller.usuariologeado.getNombre());
-		codPedido.setText(pedidoDAO.getPedido(Controller.usuariologeado.getCodigo()).getCod_Pedido() + "");
+		codPedido.setText(pedidoDAO.getPedido(Controller.usuariologeado).getCod_Pedido() + "");
 		Float total=0f;
 		String productos="";
 		for(Producto p:Controller.nuevoPedido) {
@@ -77,8 +77,8 @@ public class DetallerPedidoController extends Controller implements Initializabl
 			if (!Controller.nuevoPedido.isEmpty()) {
 
 				if (u.mostrarConfirmacion("Finalizar Pedido", "Esta seguro que quiere terminar el pedido")) {
-					p = new Pedido(pedidoDAO.getPedido(Controller.usuariologeado.getCodigo()).getCod_Pedido(),
-							Controller.nuevoPedido, Controller.usuariologeado.getCodigo());
+					p = new Pedido(pedidoDAO.getPedido(Controller.usuariologeado).getCod_Pedido(),
+							Controller.nuevoPedido, Controller.usuariologeado);
 					pedidoDAO.insert(p);
 					Controller.nuevoPedido.clear();
 					App.setRoot("menuPrincipal");

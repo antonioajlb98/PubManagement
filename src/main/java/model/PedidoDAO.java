@@ -13,11 +13,12 @@ public class PedidoDAO {
 	
 	private static PedidoDAO _instance;
 	private Connection miCon;
-	
+	private ClienteDAO cDAO;
 	
 	
 	private PedidoDAO() {
 		miCon = Connect.getConnect();
+		cDAO = ClienteDAO.getInstance();
 	}
 	public static PedidoDAO getInstance() {
 		if (_instance == null) {
@@ -32,16 +33,16 @@ public class PedidoDAO {
 	 * @param codCliente String pasado como parametro que sirve para identificar al Pedido.
 	 * @return devuelve el cliente si se encuentra en la base de datos.
 	 */
-	public Pedido getPedido(int codCliente) {
+	public Pedido getPedido(Cliente cliente) {
 		Pedido p = new Pedido();
 		if (this.miCon != null) {
 			String sql = "select cod_Pedido,cod_Cliente from Pedido where cod_Cliente=?";
 			try {
 				PreparedStatement ps = miCon.prepareStatement(sql);
-				ps.setInt(1, codCliente);
+				ps.setInt(1, cliente.getCodigo());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
-					p.setCod_cliente(rs.getInt(2));
+					p.setCliente_pidiendo(cDAO.getCliente(cliente));
 					p.setCod_Pedido(rs.getInt(1));
 				}else {
 				}
@@ -60,10 +61,10 @@ public class PedidoDAO {
 	 */
 	public boolean insert(Pedido p) {
 		boolean insertado = false;
-		String sql = "Insert into Pedido values (null,?)";
+		String sql = "Insert into Pedido values (?,null)";
 		try {
 			PreparedStatement ps = miCon.prepareStatement(sql);
-			ps.setInt(1, p.getCod_cliente());
+			ps.setInt(1, p.getCliente_pidiendo().getCodigo());
 			ps.executeUpdate();
 			insertado = true;
 		} catch (SQLException e) {

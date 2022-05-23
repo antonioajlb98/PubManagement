@@ -12,34 +12,21 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import model.Producto;
 import utils.Loggers;
 
-public class BebidaController extends Controller implements Initializable{
+public class BebidaController extends ProductoController implements Initializable{
 	
 	
 	
 	@FXML
 	private GridPane panelBebida;
+	
 	@FXML
-	private Button btnVolver;
-	@FXML
-	private ScrollPane scroller;
-	/**
-	 * Funcion que te lleva a la ventana anterior.
-	 * @param evento evento que recibe la funcion.
-	 * @throws IOException Excepcion que lanza al cambiar de pantalla
-	 */
-	@FXML
-	private void btnVolver(ActionEvent evento) throws IOException {
-		Object evt = evento.getSource();
-		if (evt.equals(btnVolver)) {
-			App.setRoot("PedidoMenu");
-		}
+	protected void btnVolver(ActionEvent evento) throws IOException {
+		super.btnVolver(evento);
 	}
 	
 	/**
@@ -51,7 +38,6 @@ public class BebidaController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		scroller.setFitToWidth(true);
 		int cont = 0;
-		Label t = new Label("Hola");
 		u.estilo(btnVolver);
 		ArrayList<Producto> listaBebida = (ArrayList<Producto>) pDAO.getAllBebida();
 		panelBebida.setAlignment(Pos.CENTER);
@@ -82,7 +68,6 @@ public class BebidaController extends Controller implements Initializable{
 				}
 			}
 		}
-
 	}
 	
 }

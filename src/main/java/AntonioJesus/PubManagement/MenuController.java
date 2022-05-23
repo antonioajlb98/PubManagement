@@ -34,7 +34,7 @@ public class MenuController extends Controller implements Initializable{
 	public void eventNuevoPedido(ActionEvent event) throws IOException {
 		Object evt = event.getSource();
 		if(evt.equals(btnNuevoPedido)) {
-			Pedido p = new Pedido(Controller.usuariologeado.getCodigo(),Controller.nuevoPedido);
+			Pedido p = new Pedido(Controller.usuariologeado,Controller.nuevoPedido);
 			pedidoDAO.insert(p);
 			App.setRoot("PedidoMenu");
 			Loggers.LogsInfo("Cambio de fxml correcto");

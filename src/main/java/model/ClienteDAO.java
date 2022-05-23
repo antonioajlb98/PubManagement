@@ -139,4 +139,27 @@ public class ClienteDAO {
 		}
 		return c;
 	}
+	public Cliente getCliente(Cliente c) {
+		Cliente c1 = new Cliente();
+		if (this.miCon != null) {
+			String sql = "select id,nombre,apellidos,usuario,contrasena from cliente where usuario= ?";
+			try {
+				PreparedStatement ps = miCon.prepareStatement(sql);
+				ps.setString(1, c.getUsuario());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					c1.setNombre(rs.getString(2));
+					c1.setApellidos(rs.getString(3));
+					c1.setCodigo(rs.getInt(1));
+					c1.setUsuario(rs.getString(4));
+					c1.setContrasena(rs.getString(5));
+				}else {
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null,"Hubo un error en la ejecucion:\n"+e.getMessage());
+			}
+		}
+		return c1;
+	}
 }
