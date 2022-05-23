@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import model.Producto;
@@ -25,6 +27,8 @@ public class BebidaController extends Controller implements Initializable{
 	private GridPane panelBebida;
 	@FXML
 	private Button btnVolver;
+	@FXML
+	private ScrollPane scroller;
 	/**
 	 * Funcion que te lleva a la ventana anterior.
 	 * @param evento evento que recibe la funcion.
@@ -45,12 +49,16 @@ public class BebidaController extends Controller implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		scroller.setFitToWidth(true);
 		int cont = 0;
+		Label t = new Label("Hola");
 		u.estilo(btnVolver);
 		ArrayList<Producto> listaBebida = (ArrayList<Producto>) pDAO.getAllBebida();
 		panelBebida.setAlignment(Pos.CENTER);
 
 		for (int i = 0; i < panelBebida.getRowCount(); i++) {
+			if(i==panelBebida.getRowCount()-1) {
+			}
 			for (int j = 0; j < panelBebida.getColumnCount(); j++) {
 				if (cont<listaBebida.size()) {
 					Button btn = new Button();

@@ -60,7 +60,7 @@ public class PedidoDAO {
 	 */
 	public boolean insert(Pedido p) {
 		boolean insertado = false;
-		String sql = "Insert into Pedido values (?,null)";
+		String sql = "Insert into Pedido values (null,?)";
 		try {
 			PreparedStatement ps = miCon.prepareStatement(sql);
 			ps.setInt(1, p.getCod_cliente());

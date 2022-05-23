@@ -44,7 +44,7 @@ public class DetallerPedidoController extends Controller implements Initializabl
 		Float total=0f;
 		String productos="";
 		for(Producto p:Controller.nuevoPedido) {
-			productos+="Nombre: "+p.getNombre()+"Precio: "+p.getPrecio()+"\n";	
+			productos+="Nombre: "+p.getNombre()+" Precio: "+p.getPrecio()+"\n";	
 			total+=p.getPrecio();
 		}
 		totalPagar.setText(total+"");
@@ -68,9 +68,10 @@ public class DetallerPedidoController extends Controller implements Initializabl
 	 * Funcion que limpia el array y te permite realizar un nuevo pedido.
 	 * 
 	 * @param evento evento que recibe la funcion.
+	 * @throws IOException Excepcion que puede lanzar al cambiar de fxml.
 	 */
 	@FXML
-	public void btnImprimir(ActionEvent evento) {
+	public void btnImprimir(ActionEvent evento) throws IOException {
 		Object evt = evento.getSource();
 		if (evt.equals(btnImprimir)) {
 			if (!Controller.nuevoPedido.isEmpty()) {
@@ -80,6 +81,7 @@ public class DetallerPedidoController extends Controller implements Initializabl
 							Controller.nuevoPedido, Controller.usuariologeado.getCodigo());
 					pedidoDAO.insert(p);
 					Controller.nuevoPedido.clear();
+					App.setRoot("menuPrincipal");
 				}
 			} else {
 				u.mostrarAlerta("Error", "No ha añadido ningun producto al Pedido", "");

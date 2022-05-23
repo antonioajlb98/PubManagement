@@ -60,7 +60,7 @@ public class EditarProductosController extends Controller implements Initializab
 		if (tab.getSelectionModel().isEmpty()) {
 			u.mostrarAlerta("Error", "Debe seleccionar un campo para borrarlo", "Intentelo de nuevo");
 		} else {
-			boolean eliminar = u.mostrarConfirmacion();
+			boolean eliminar = u.mostrarConfirmacion("Comfirmación","¿Desea eliminar el Producto?");
 			if (eliminar) {
 				pDAO.delete(tab.getSelectionModel().getSelectedItem());
 				listaActualizable.remove(tab.getSelectionModel().getSelectedItem());
