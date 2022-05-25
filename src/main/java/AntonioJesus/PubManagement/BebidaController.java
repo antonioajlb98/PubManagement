@@ -1,6 +1,5 @@
 package AntonioJesus.PubManagement;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -24,11 +23,6 @@ public class BebidaController extends ProductoController implements Initializabl
 	@FXML
 	private GridPane panelBebida;
 	
-	@FXML
-	protected void btnVolver(ActionEvent evento) throws IOException {
-		super.btnVolver(evento);
-	}
-	
 	/**
 	 * Funcion que se inicia al cambiar a esta pantalla
 	 * que crea los botones y los añade al gridpanel dependiendo
@@ -43,8 +37,6 @@ public class BebidaController extends ProductoController implements Initializabl
 		panelBebida.setAlignment(Pos.CENTER);
 
 		for (int i = 0; i < panelBebida.getRowCount(); i++) {
-			if(i==panelBebida.getRowCount()-1) {
-			}
 			for (int j = 0; j < panelBebida.getColumnCount(); j++) {
 				if (cont<listaBebida.size()) {
 					Button btn = new Button();

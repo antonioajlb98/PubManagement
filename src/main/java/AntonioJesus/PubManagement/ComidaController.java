@@ -1,6 +1,5 @@
 package AntonioJesus.PubManagement;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -21,10 +20,6 @@ public class ComidaController extends ProductoController implements Initializabl
 	
 	@FXML
 	private GridPane panelComida;
-	@FXML
-	protected void btnVolver(ActionEvent evento) throws IOException {
-		super.btnVolver(evento);
-	}
 	/**
 	 * Funcion que se inicia al cambiar a esta pantalla
 	 * que crea los botones y los añade al gridpanel dependiendo
@@ -32,6 +27,7 @@ public class ComidaController extends ProductoController implements Initializabl
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		scroller.setFitToWidth(true);
 		int cont = 0;
 		u.estilo(btnVolver);
 		ArrayList<Producto> listaComida = (ArrayList<Producto>) pDAO.getAllComida();
